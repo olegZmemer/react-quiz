@@ -1,0 +1,29 @@
+.Input{
+    margin-bottom: 15px;
+}
+.Input label{
+    margin-bottom: 3px;
+    padding: 0;
+    display: block;
+    font-weight: bold;
+}
+
+.Input input{
+    display: block;
+    box-sizing: border-box;
+    border: 1px solid #bebebe;
+    margin: 0 0 5px;
+    width: 100%;
+    padding: 10px 0 10px 10px;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    font-size: 17px
+}
+.Input span{
+    color: red;
+    font-size: 15px;
+    font-weight: bold;
+}
+.Input.invalid{
+    color: red;
+}

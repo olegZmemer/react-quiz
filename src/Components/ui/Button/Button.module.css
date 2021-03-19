@@ -1,0 +1,36 @@
+ .Button {
+     display: inline-block;
+     padding: 10px 20px;
+     border: none;
+     color: black;
+     margin-right: 20px;
+     text-transform: uppercase;
+     font-weight: bold;
+     font-size: 12px;
+     cursor: pointer;
+ }
+
+ .Button:focus {
+     outline: none;
+
+ } 
+
+ .Button:disabled {
+     background: #ccc;
+     color: black;
+     cursor: not-allowed;
+ }
+
+ .error{
+     background: lightsalmon;
+     color: white;
+ }
+ .success{
+    background: limegreen;
+    color: white;
+
+ }
+ .primary{
+     background: rgb(9, 145, 230);
+     color: white;
+ }
