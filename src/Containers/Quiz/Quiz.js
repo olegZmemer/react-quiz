@@ -10,7 +10,6 @@ class Quiz extends Component{
    
     async componentDidMount(){
         this.props.fetchQuizById(this.props.match.params.id)
-
     }
     componentWillUnmount(){
         this.props.retryQuiz()
@@ -27,7 +26,7 @@ class Quiz extends Component{
     render(){
         return (
         <div className = {classes.Quiz}>
-            <h1>Ответье на все вопросы</h1>
+            <h1>Answer all question</h1>
         {this.props.loading || !this.props.quiz? <Loader/> 
         : 
         this.props.isFinished ? 

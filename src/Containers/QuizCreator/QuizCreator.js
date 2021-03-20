@@ -9,16 +9,16 @@ import { connect } from 'react-redux'
 import {createQuizQuestion, finishCreateQuiz} from '../../store/actions/create'
 function createOptionControl(number){
     return createControl({
-        label: `Вариант ${number}`,
-        errorMessage: 'Значение не может быть пустым',
+        label: `Option ${number}`,
+        errorMessage: 'Value shouldnt be empty',
         id: number}, 
         {required: true})
 }
 function createFormControls(){
     return {
         question: createControl({
-            label: 'Введите вопрос',
-            errorMessage: 'Вопрос не может быть пустым!'
+            label: 'Write your question',
+            errorMessage: 'Value shouldnt be empty!'
         }, {
             required: true
         }),
@@ -32,7 +32,8 @@ class QuizCreator extends Component {
     state ={
         isFormValid: false,
         formControls: createFormControls(),
-        rightAnswerId: 1
+        rightAnswerId: 1,
+        name: ''
     }
     
     submitHandler = (e)=>{
@@ -104,19 +105,31 @@ class QuizCreator extends Component {
             this.setState({
                 isFormValid: false,
                 formControls: createFormControls(),
-                rightAnswerId: 1
+                rightAnswerId: 1,
+                name: ''
             })
-            this.props.finishCreateQuiz()
+            this.props.finishCreateQuiz(this.state.name)
+    }
+    changeNameHandler = (value)=>{
+        this.setState({
+            name: value
+        })
     }
     render() {
         return (
             <div className ={classes.QuizCreator}>
                 <div>
-                    <h1>Создание теста</h1>
+                    <h1>Quiz creation</h1>
                     <form onSubmit = {this.submitHandler}>
+                        <Input
+                        value = {this.state.name}
+                        label = 'Choose the name of your quiz'
+                        minlength = '6'
+                        onChange = {e => this.changeNameHandler(e.target.value)}
+                        />
                         {this.renderControls()}
                         <Select
-                        label = 'Выберите правильный ответ'
+                        label = 'Choose the right answer'
                         value = {this.state.rightAnswerId}
                         onChange = {this.selectChangeHandler}
                         options = {
@@ -131,12 +144,12 @@ class QuizCreator extends Component {
                         type = 'primary'
                         onClick = {this.addQuestionHandler}
                         disabled = {!this.state.isFormValid}
-                        >Добавить вопрос</Button>
+                        >Add question</Button>
                         <Button
                         type = 'success'
                         onClick = {this.createQuizHandler}
                         disabled = {this.props.quiz.length === 0}
-                        >Создать тест</Button>
+                        >Create test</Button>
                     </form>
                 </div>
             </div>
@@ -150,7 +163,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch)=>{
     return {
         createQuizQuestion: item => dispatch(createQuizQuestion(item)),
-        finishCreateQuiz: () => dispatch(finishCreateQuiz())
+        finishCreateQuiz: name => dispatch(finishCreateQuiz(name))
     }
 }
 

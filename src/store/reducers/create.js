@@ -1,7 +1,8 @@
-import { CREATE_QUIZ_QUESTION, RESET_QUIZ_CREATION } from "../actions/actionTypes"
+import { CREATE_QUIZ_QUESTION, RESET_QUIZ_CREATION, SET_QUIZ_NAME } from "../actions/actionTypes"
 
 const initialState = {
-    quiz: []
+    quiz: [],
+    name: ''
 }
 
 export default function createReducer(state = initialState, action){
@@ -14,7 +15,13 @@ export default function createReducer(state = initialState, action){
         case RESET_QUIZ_CREATION: 
             return {
                 ...state,
-                quiz: []
+                quiz: [],
+                name: ''
+            }
+        case SET_QUIZ_NAME:
+            return {
+                ...state,
+                name: action.payload
             }
         default:
             return state
